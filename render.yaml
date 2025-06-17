@@ -2,6 +2,10 @@ services:
   - type: web
     name: file-upload-app
     env: python
-    buildCommand: ""
-    startCommand: python app.py
-    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: DATABASE_URL
+        value: postgresql://file_upload_db_z1eh_user:KfKoartlI4O09BUndQrcG6qo3J6NDjq0@dpg-d18hk0fdiees739f0uhg-a/file_upload_db_z1eh
